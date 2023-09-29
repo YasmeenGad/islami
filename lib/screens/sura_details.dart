@@ -24,7 +24,7 @@ class _SuraDetailsState extends State<SuraDetails> {
     }
     return Stack(
       children: [
-        Image.asset("assets/images/background.png",
+        Image.asset("assets/images/default_bg.png",
             width: double.infinity, fit: BoxFit.cover),
         Scaffold(
             appBar: AppBar(
@@ -49,8 +49,6 @@ class _SuraDetailsState extends State<SuraDetails> {
                         SizedBox(
                           width: 24,
                         ),
-                        ImageIcon(AssetImage(
-                            "assets/images/Icon awesome-play-circle.png")),
                       ],
                     ),
                     Divider(
@@ -64,11 +62,14 @@ class _SuraDetailsState extends State<SuraDetails> {
                         padding: const EdgeInsets.all(8.0),
                         child: ListView.builder(
                           itemBuilder: (context, index) {
-                            return Text(
-                              "${verses[index]}" + "(" "${index + 1}" + ")",
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.amiriQuran(
-                                  color: MyThemeData.blackColor),
+                            return Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: Text(
+                                "${verses[index]}(${index + 1})",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.amiriQuran(
+                                    color: MyThemeData.blackColor),
+                              ),
                             );
                           },
                           itemCount: verses.length,

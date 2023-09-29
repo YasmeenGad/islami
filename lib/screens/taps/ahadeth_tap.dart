@@ -51,8 +51,8 @@ class _AhadethTapState extends State<AhadethTap> {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        Navigator.of(context)
-                            .pushNamed(HadethDetails.routeName);
+                        Navigator.of(context).pushNamed(HadethDetails.routeName,
+                            arguments: allAhadeth[index]);
                       },
                       child: Text(
                         "${allAhadeth[index].title}",
