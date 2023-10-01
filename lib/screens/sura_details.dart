@@ -39,6 +39,9 @@ class _SuraDetailsState extends State<SuraDetails> {
                     side: BorderSide(color: MyThemeData.primaryColor)),
                 child: Column(
                   children: [
+                    SizedBox(
+                      height: 12,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -49,6 +52,12 @@ class _SuraDetailsState extends State<SuraDetails> {
                         SizedBox(
                           width: 24,
                         ),
+                        ImageIcon(
+                            AssetImage(
+                              "assets/images/play-circle.png",
+                            ),
+                            color: MyThemeData.blackColor,
+                            size: 27)
                       ],
                     ),
                     Divider(
@@ -65,7 +74,7 @@ class _SuraDetailsState extends State<SuraDetails> {
                             return Directionality(
                               textDirection: TextDirection.rtl,
                               child: Text(
-                                "${verses[index]}(${index + 1})",
+                                "${verses[index]}",
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.amiriQuran(
                                     color: MyThemeData.blackColor),
@@ -86,7 +95,7 @@ class _SuraDetailsState extends State<SuraDetails> {
 
   void loadFile(int index) async {
     String file = await rootBundle.loadString("assets/files/${index + 1}.txt");
-    List<String> lines = file.split("\n");
+    List<String> lines = file.trim().split("\n");
     verses = lines;
     setState(() {});
   }
