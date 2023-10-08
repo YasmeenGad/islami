@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:islamy/constants/theme.dart';
+import 'package:islamy/controller/theming.dart';
+
 import 'package:islamy/models/sura_model.dart';
 
 class SuraDetails extends StatefulWidget {

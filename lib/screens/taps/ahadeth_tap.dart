@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:islamy/constants/theme.dart';
+import 'package:islamy/controller/theming.dart';
 import 'package:islamy/models/hadeth_model.dart';
 import 'package:islamy/screens/hadeth_details.dart';
 

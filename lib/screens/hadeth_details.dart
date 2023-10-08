@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islamy/controller/theming.dart';
 import 'package:islamy/models/hadeth_model.dart';
-
-import '../constants/theme.dart';
 
 class HadethDetails extends StatelessWidget {
   const HadethDetails({Key? key}) : super(key: key);

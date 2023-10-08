@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:islamy/constants/theme.dart';
+import 'package:islamy/controller/theming.dart';
 import 'package:islamy/screens/taps/ahadeth_tap.dart';
 import 'package:islamy/screens/taps/quran_tap.dart';
 import 'package:islamy/screens/taps/radio_tap.dart';
