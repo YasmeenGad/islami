@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islamy/controller/theming.dart';
 
@@ -25,19 +26,34 @@ class _SuraDetailsState extends State<SuraDetails> {
     }
     return Stack(
       children: [
-        Image.asset("assets/images/default_bg.png",
-            width: double.infinity, fit: BoxFit.cover),
+        Get.isDarkMode
+            ? Image.asset(
+                "assets/images/dark_bg.png",
+                width: double.infinity,
+                fit: BoxFit.cover,
+              )
+            : Image.asset(
+                "assets/images/default_bg.png",
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
         Scaffold(
             appBar: AppBar(
-                title: Text("islami",
+                title: Text("إسلامي",
                     style: Theme.of(context).textTheme.bodyLarge)),
             body: Padding(
               padding: const EdgeInsets.all(12),
               child: Card(
+                color: Get.isDarkMode
+                    ? MyThemeData.primaryColordark
+                    : MyThemeData.whiteColor,
                 elevation: 8,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
-                    side: BorderSide(color: MyThemeData.primaryColor)),
+                    side: BorderSide(
+                        color: Get.isDarkMode
+                            ? MyThemeData.secondColor
+                            : MyThemeData.primaryColor)),
                 child: Column(
                   children: [
                     SizedBox(
@@ -48,7 +64,13 @@ class _SuraDetailsState extends State<SuraDetails> {
                       children: [
                         Text(
                           "${args.name}",
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(
+                                  color: Get.isDarkMode
+                                      ? MyThemeData.secondColor
+                                      : MyThemeData.blackColor),
                         ),
                         SizedBox(
                           width: 24,
@@ -57,13 +79,17 @@ class _SuraDetailsState extends State<SuraDetails> {
                             AssetImage(
                               "assets/images/play-circle.png",
                             ),
-                            color: MyThemeData.blackColor,
+                            color: Get.isDarkMode
+                                ? MyThemeData.secondColor
+                                : MyThemeData.primaryColor,
                             size: 27)
                       ],
                     ),
                     Divider(
                       thickness: 2,
-                      color: MyThemeData.primaryColor,
+                      color: Get.isDarkMode
+                          ? MyThemeData.secondColor
+                          : MyThemeData.primaryColor,
                       indent: 40,
                       endIndent: 40,
                     ),
@@ -78,7 +104,10 @@ class _SuraDetailsState extends State<SuraDetails> {
                                 "${verses[index]}",
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.amiriQuran(
-                                    color: MyThemeData.blackColor),
+                                    color: Get.isDarkMode
+                                        ? MyThemeData.secondColor
+                                        : MyThemeData.blackColor,
+                                    fontSize: 20),
                               ),
                             );
                           },

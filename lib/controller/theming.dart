@@ -6,6 +6,8 @@ class MyThemeData {
   static Color blackColor = Color(0xFF242424);
   static Color primaryColordark = Color(0xFF141A2E);
   static Color secondColor = Color(0xFFFACC1D);
+  static Color whiteColor = Colors.white;
+
   static ThemeData customlightTheme = ThemeData.light().copyWith(
       scaffoldBackgroundColor: Colors.transparent,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -42,7 +44,6 @@ class MyThemeData {
   static ThemeData customdarkTheme = ThemeData.dark().copyWith(
       scaffoldBackgroundColor: Colors.transparent,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        type: BottomNavigationBarType.shifting,
         selectedItemColor: secondColor,
         unselectedItemColor: Colors.white,
         backgroundColor: primaryColordark,
@@ -66,7 +67,7 @@ class MyThemeData {
       ),
       appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(
-            color: primaryColordark,
+            color: secondColor,
           ),
           centerTitle: true,
           color: Colors.transparent,

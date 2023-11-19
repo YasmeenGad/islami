@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islamy/controller/theming.dart';
 import 'package:islamy/models/hadeth_model.dart';
@@ -13,21 +14,34 @@ class HadethDetails extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset(
-            "assets/images/default_bg.png",
-            fit: BoxFit.cover,
-          ),
+          Get.isDarkMode
+              ? Image.asset(
+                  "assets/images/dark_bg.png",
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                )
+              : Image.asset(
+                  "assets/images/default_bg.png",
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
           Scaffold(
             appBar: AppBar(
-                title: Text("islami",
-                    style: Theme.of(context).textTheme.bodyLarge)),
+                title:
+                    Text("1".tr, style: Theme.of(context).textTheme.bodyLarge)),
             body: Padding(
               padding: const EdgeInsets.all(14),
               child: Card(
+                color: Get.isDarkMode
+                    ? MyThemeData.primaryColordark
+                    : MyThemeData.whiteColor,
                 elevation: 8,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
-                    side: BorderSide(color: MyThemeData.primaryColor)),
+                    side: BorderSide(
+                        color: Get.isDarkMode
+                            ? MyThemeData.secondColor
+                            : MyThemeData.primaryColor)),
                 child: Column(
                   children: [
                     Row(
@@ -40,7 +54,10 @@ class HadethDetails extends StatelessWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
-                                .copyWith(color: MyThemeData.blackColor),
+                                .copyWith(
+                                    color: Get.isDarkMode
+                                        ? MyThemeData.secondColor
+                                        : MyThemeData.blackColor),
                           ),
                         ),
                         SizedBox(
@@ -50,7 +67,9 @@ class HadethDetails extends StatelessWidget {
                     ),
                     Divider(
                       thickness: 2,
-                      color: MyThemeData.primaryColor,
+                      color: Get.isDarkMode
+                          ? MyThemeData.secondColor
+                          : MyThemeData.primaryColor,
                       indent: 40,
                       endIndent: 40,
                     ),
@@ -63,7 +82,10 @@ class HadethDetails extends StatelessWidget {
                               "${args.content[index]}",
                               textAlign: TextAlign.center,
                               style: GoogleFonts.amiriQuran(
-                                  color: MyThemeData.blackColor),
+                                  color: Get.isDarkMode
+                                      ? MyThemeData.secondColor
+                                      : MyThemeData.blackColor,
+                                  fontSize: 20),
                             );
                           },
                           itemCount: args.content.length,

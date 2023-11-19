@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:islamy/controller/theming.dart';
 import 'package:islamy/screens/taps/ahadeth_tap.dart';
 import 'package:islamy/screens/taps/quran_tap.dart';
@@ -30,12 +31,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset("assets/images/default_bg.png"),
+        Get.isDarkMode
+            ? Image.asset("assets/images/dark_bg.png")
+            : Image.asset("assets/images/default_bg.png"),
         Scaffold(
           appBar: AppBar(
             title: Text(
-              "islami",
-              style: Theme.of(context).textTheme.bodyLarge,
+              "1".tr,
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: Get.isDarkMode
+                      ? MyThemeData.whiteColor
+                      : MyThemeData.blackColor),
             ),
           ),
           body: taps[index],
@@ -51,33 +57,43 @@ class _HomeScreenState extends State<HomeScreen> {
                       AssetImage("assets/images/icon_quran.png"),
                       size: imageSize,
                     ),
-                    label: "Quran",
-                    backgroundColor: MyThemeData.primaryColor),
+                    label: "3".tr,
+                    backgroundColor: Get.isDarkMode
+                        ? MyThemeData.primaryColordark
+                        : MyThemeData.primaryColor),
                 BottomNavigationBarItem(
                     icon: ImageIcon(
                       AssetImage("assets/images/icon_sebha.png"),
                       size: imageSize,
                     ),
-                    label: "Sebha",
-                    backgroundColor: MyThemeData.primaryColor),
+                    label: "4".tr,
+                    backgroundColor: Get.isDarkMode
+                        ? MyThemeData.primaryColordark
+                        : MyThemeData.primaryColor),
                 BottomNavigationBarItem(
                     icon: ImageIcon(
                       AssetImage("assets/images/icon_radio.png"),
                       size: imageSize,
                     ),
-                    label: "Radio",
-                    backgroundColor: MyThemeData.primaryColor),
+                    label: "5".tr,
+                    backgroundColor: Get.isDarkMode
+                        ? MyThemeData.primaryColordark
+                        : MyThemeData.primaryColor),
                 BottomNavigationBarItem(
                     icon: ImageIcon(
                       AssetImage("assets/images/icon_hadeth.png"),
                       size: imageSize,
                     ),
-                    label: "Ahadeth",
-                    backgroundColor: MyThemeData.primaryColor),
+                    label: "6".tr,
+                    backgroundColor: Get.isDarkMode
+                        ? MyThemeData.primaryColordark
+                        : MyThemeData.primaryColor),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.settings),
-                    label: "Settings",
-                    backgroundColor: MyThemeData.primaryColor),
+                    label: "7".tr,
+                    backgroundColor: Get.isDarkMode
+                        ? MyThemeData.primaryColordark
+                        : MyThemeData.primaryColor),
               ]),
         ),
       ],

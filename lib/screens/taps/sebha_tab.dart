@@ -1,8 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:islamy/constants/theme.dart';
+import 'package:islamy/controller/theming.dart';
 
 class SebhaTap extends StatefulWidget {
   const SebhaTap({super.key});
@@ -14,7 +15,8 @@ class SebhaTap extends StatefulWidget {
 class _SebhaTapState extends State<SebhaTap> {
   double finalAngle = 0.0;
   int counter = 0;
-  String txt = "سبحان الله";
+  int index = 0;
+  List<String> str = ["سبحان الله", "الحمد لله", "الله اكبر"];
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +29,12 @@ class _SebhaTapState extends State<SebhaTap> {
               children: [
                 Align(
                     alignment: Alignment.topCenter,
-                    child: Image.asset(
-                      "assets/images/head_sebha_dark.png",
-                      width: 73,
-                      height: 105,
-                      color: MyThemeData.primaryColor,
-                    )),
+                    child: Image.asset("assets/images/head_sebha_dark.png",
+                        width: 73,
+                        height: 105,
+                        color: Get.isDarkMode
+                            ? MyThemeData.secondColor
+                            : MyThemeData.primaryColor)),
                 GestureDetector(
                   onPanUpdate: (value) {
                     setState(() {
@@ -46,11 +48,27 @@ class _SebhaTapState extends State<SebhaTap> {
                         child: Transform.rotate(
                           angle: finalAngle,
                           origin: Offset(0, 0),
-                          child: Image.asset(
-                              "assets/images/body_sebha_dark.png",
-                              width: 232,
-                              height: 234,
-                              color: MyThemeData.primaryColor),
+                          child: InkWell(
+                            onTap: () {
+                              if (counter == 33) {
+                                counter = 0;
+                                if (index == 2) {
+                                  index = 0;
+                                } else {
+                                  index++;
+                                }
+                              } else {
+                                counter++;
+                              }
+                            },
+                            child: Image.asset(
+                                "assets/images/body_sebha_dark.png",
+                                width: 232,
+                                height: 234,
+                                color: Get.isDarkMode
+                                    ? MyThemeData.secondColor
+                                    : MyThemeData.primaryColor),
+                          ),
                         )),
                   ),
                 )
@@ -58,9 +76,12 @@ class _SebhaTapState extends State<SebhaTap> {
             ),
             SizedBox(),
             Text(
-              "عدد التسبيحات",
-              style:
-                  Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 25),
+              "9".tr,
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  fontSize: 25,
+                  color: Get.isDarkMode
+                      ? MyThemeData.whiteColor
+                      : MyThemeData.blackColor),
             ),
             Container(
               width: 69,
@@ -71,26 +92,35 @@ class _SebhaTapState extends State<SebhaTap> {
                         textStyle: Theme.of(context)
                             .textTheme
                             .bodySmall!
-                            .copyWith(fontSize: 25),
+                            .copyWith(
+                                fontSize: 25,
+                                color: Get.isDarkMode
+                                    ? MyThemeData.whiteColor
+                                    : MyThemeData.blackColor),
                       ))),
               decoration: BoxDecoration(
-                  color: Color(0xFFCBAE82),
+                  color: Get.isDarkMode
+                      ? MyThemeData.primaryColordark
+                      : Color(0xFFCBAE82),
                   borderRadius: BorderRadius.circular(25)),
             ),
             Container(
               width: 137,
               height: 51,
               decoration: BoxDecoration(
-                  color: MyThemeData.primaryColor,
+                  color: Get.isDarkMode
+                      ? MyThemeData.secondColor
+                      : MyThemeData.primaryColor,
                   borderRadius: BorderRadius.circular(25)),
               child: Center(
                   child: Text(
-                "${txt}",
+                    "${str[index]}",
                 style: GoogleFonts.inter(
-                    textStyle: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: Color(0xFFFFFFFF), fontSize: 25)),
+                    textStyle: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: Get.isDarkMode
+                            ? MyThemeData.blackColor
+                            : Color(0xFFFFFFFF),
+                        fontSize: 25)),
               )),
             )
           ],

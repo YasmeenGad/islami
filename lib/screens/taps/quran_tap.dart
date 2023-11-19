@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:islamy/constants/theme.dart';
+import 'package:get/get.dart';
+import 'package:islamy/controller/theming.dart';
+
 import 'package:islamy/models/sura_model.dart';
 import 'package:islamy/screens/sura_details.dart';
 
@@ -130,18 +132,22 @@ class QuranTap extends StatelessWidget {
         children: [
           Image.asset("assets/images/qur2an_screen_logo.png"),
           Divider(
-            color: MyThemeData.primaryColor,
+            color: Get.isDarkMode
+                ? MyThemeData.secondColor
+                : MyThemeData.primaryColor,
             thickness: 2,
           ),
           Text(
-            "Sura Name",
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(color: MyThemeData.blackColor),
+            "2".tr,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color: Get.isDarkMode
+                    ? MyThemeData.whiteColor
+                    : MyThemeData.blackColor),
           ),
           Divider(
-            color: MyThemeData.primaryColor,
+            color: Get.isDarkMode
+                ? MyThemeData.secondColor
+                : MyThemeData.primaryColor,
             thickness: 2,
           ),
           Expanded(
@@ -149,7 +155,9 @@ class QuranTap extends StatelessWidget {
             separatorBuilder: (context, index) {
               return Divider(
                 thickness: 1,
-                color: MyThemeData.primaryColor,
+                color: Get.isDarkMode
+                    ? MyThemeData.secondColor
+                    : MyThemeData.primaryColor,
                 endIndent: 40,
                 indent: 40,
               );
@@ -163,7 +171,10 @@ class QuranTap extends StatelessWidget {
                   },
                   child: Text(
                     "${suraName[index]}",
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: Get.isDarkMode
+                            ? MyThemeData.whiteColor
+                            : MyThemeData.blackColor),
                   ),
                 ),
               );

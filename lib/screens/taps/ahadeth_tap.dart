@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:islamy/controller/theming.dart';
 import 'package:islamy/models/hadeth_model.dart';
 import 'package:islamy/screens/hadeth_details.dart';
@@ -23,18 +24,22 @@ class _AhadethTapState extends State<AhadethTap> {
         children: [
           Image.asset("assets/images/hadeth_logo.png"),
           Divider(
-            color: MyThemeData.primaryColor,
+            color: Get.isDarkMode
+                ? MyThemeData.secondColor
+                : MyThemeData.primaryColor,
             thickness: 2,
           ),
           Text(
-            "Ahadeth",
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(color: MyThemeData.primaryColor),
+            "6".tr,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color: Get.isDarkMode
+                    ? MyThemeData.whiteColor
+                    : MyThemeData.blackColor),
           ),
           Divider(
-            color: MyThemeData.primaryColor,
+            color: Get.isDarkMode
+                ? MyThemeData.secondColor
+                : MyThemeData.primaryColor,
             thickness: 2,
           ),
           Expanded(
@@ -42,7 +47,9 @@ class _AhadethTapState extends State<AhadethTap> {
                   separatorBuilder: (context, index) {
                     return Divider(
                       thickness: 1,
-                      color: MyThemeData.primaryColor,
+                      color: Get.isDarkMode
+                          ? MyThemeData.secondColor
+                          : MyThemeData.primaryColor,
                       endIndent: 40,
                       indent: 40,
                     );
@@ -57,7 +64,10 @@ class _AhadethTapState extends State<AhadethTap> {
                       child: Text(
                         "${allAhadeth[index].title}",
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            color: Get.isDarkMode
+                                ? MyThemeData.whiteColor
+                                : MyThemeData.blackColor),
                       ),
                     );
                   }))
